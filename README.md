@@ -12,6 +12,8 @@ projects.
 
 ## Features
 - Includes PyTorch and its derivatives (e.g. torchvision, torchaudio)
+- Includes IPykernel (the dependency for Jupyter Notebook in Visual Studio Code)
+- Includes quality check tools (e.g. flake8, black, isort)
 - Uses globally installed PyTorch in virtual environment to save disk space
 - Automatically setup virtual environment after container creation
 - Uses poetry for dependency management
