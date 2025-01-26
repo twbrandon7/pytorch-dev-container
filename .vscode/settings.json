@@ -1,0 +1,28 @@
+{
+    "terminal.integrated.defaultProfile.linux": "zsh",
+    "isort.args": [
+        "--settings-path=${workspaceFolder}/.isort.cfg"
+    ],
+    "autoDocstring.docstringFormat": "google",
+    "editor.formatOnSave": true,
+    "python.testing.unittestArgs": [
+        "-v",
+        "-s",
+        ".",
+        "-p",
+        "*_test.py"
+    ],
+    "python.testing.pytestEnabled": false,
+    "python.testing.unittestEnabled": true,
+    "editor.codeActionsOnSave": {
+        "source.organizeImports": "explicit"
+    },
+    "editor.rulers": [
+        88
+    ],
+    "flake8.args": [
+        "--config=${workspaceFolder}/.flake8"
+    ],
+    "notebook.defaultFormatter": "ms-python.black-formatter",
+    "jupyter.notebookFileRoot": "${workspaceFolder}"
+}
