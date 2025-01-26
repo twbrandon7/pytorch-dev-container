@@ -3,9 +3,13 @@
 {
     "name": "Python 3",
     // Use a Dockerfile or Docker Compose file. More info: https://containers.dev/guide/dockerfile
-    "image": "twbrandon7/pytorch-dev-container:torch-2.5.1-cu124-py3.11",
+    "dockerComposeFile": [
+        "docker-compose.yml"
+    ],
+    "service": "workspace",
+    "workspaceFolder": "/workspaces/${localWorkspaceFolderBasename}",
     // Features to add to the dev container. More info: https://containers.dev/features.
-    "features": {},
+    // "features": {},
     // Use 'forwardPorts' to make a list of ports inside the container available locally.
     // "forwardPorts": [],
     // Use 'postCreateCommand' to run commands after the container is created.
@@ -28,12 +32,7 @@
                 "njpwerner.autodocstring"
             ]
         }
-    },
-    "runArgs": [
-        "--gpus",
-        "all",
-        "--ipc=host"
-    ]
+    }
     // Uncomment to connect as root instead. More info: https://aka.ms/dev-containers-non-root.
     // "remoteUser": "root"
 }
