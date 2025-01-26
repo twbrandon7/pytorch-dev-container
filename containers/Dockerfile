@@ -39,6 +39,8 @@ RUN pip3 install "flake8==7.1.1" \
     "black==24.10.0" \
     "isort==5.13.2"
 
+RUN pip3 install ipykernel
+
 USER jupyter
 ENV PIP_TARGET=/home/jupyter/.site-packages
 
