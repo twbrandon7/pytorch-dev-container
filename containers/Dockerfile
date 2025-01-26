@@ -34,11 +34,13 @@ RUN pip3 install "torch==${PYTORCH_VERSION}" \
     "torchaudio==${TORCHAUDIO_VERSION}" \
     --index-url ${PYTORCH_INDEX_URL}
 
+# Install quality tools
 RUN pip3 install "flake8==7.1.1" \
     "pep8-naming==0.14.1" \
     "black==24.10.0" \
     "isort==5.13.2"
 
+# Install Jupyter
 RUN pip3 install ipykernel
 
 USER jupyter
