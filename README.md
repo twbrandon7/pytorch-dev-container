@@ -73,13 +73,30 @@ Once the image is built, you can push it to Docker Hub by running:
 docker push your-name/pytorch-dev-container:torch-2.5.1-cu124-py3.11
 ```
 
-Finally, edit the `devcontainer.json` in the `.devcontainer` directory to use the new
-image:
-```json
-{
-    "image": "your-name/pytorch-dev-container:torch-2.5.1-cu124-py3.11",
-}
+Finally, update the `docker-compose.yml` file in the `.devcontainer` directory to use the new image:
+```yaml
+services:
+  workspace:
+    image: your-name/pytorch-dev-container:torch-2.5.1-cu124-py3.11
+    # ...existing code...
 ```
 
 It is encouraged to use the same container image across all your projects to save disk
 space.
+
+### Add volumes
+If you want to add volumes to the container to persist the content in some directories,
+you can add the following lines to the `docker-compose.yml` file:
+```yaml
+services:
+  workspace:
+    # ...existing code...
+    volumes:
+      - /path/to/host/directory:/path/to/container/directory
+      - named-volume:/path/to/container/directory
+
+# ...existing code...
+
+volumes:
+  named-volume:
+```
