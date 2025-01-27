@@ -32,7 +32,8 @@ projects.
 3. Use short cut `Ctrl+Shift+P` to open the command palette, and select
 `Dev Containers: Rebuild and Reopen in Container`
 
-4. After the container is opened, you can add dependencies by running:
+4. After the container is opened, you can add dependencies by running `poetry add`. For
+   example:
     ```bash
     poetry add matplotlib
     ```
@@ -42,22 +43,18 @@ projects.
 
 ## Customization
 By default, the container image `twbrandon7/pytorch-dev-container` is used. However, you
-can customize the image by modifying the `Dockerfile` in the `containers` directory to
-add your desired dependencies.
+can customize the image by modifying `containers/Dockerfile` or
+`containers/pyproject.toml` to add your desired dependencies.
 
 For example, if `transformers` is the common dependency across all your projects, you
-can add the following line above the `USER jupyter` section in the `Dockerfile`:
-```Dockerfile
-# ...
-
-# Install desired dependencies before switching to jupyter user
-RUN pip install transformers
-
-USER jupyter
-ENV PIP_TARGET=/home/jupyter/.site-packages
+can add the following line in the `[tool.poetry.dependencies]` section in
+`containers/pyproject.toml`:
+```toml
+[tool.poetry.dependencies]
+transformers = "^4.48.1"
 ```
 
-After modifying the `Dockerfile`, you can modify the parameters of the build command in
+After modifying the files, you can modify the parameters of the build command in
 `containers/build.sh`:
 ```bash
 USERNAME="your-name"
@@ -67,7 +64,8 @@ TAG="torch-2.5.1-cu124-py3.11"
 
 Then, you can build the container image by running:
 ```bash
-bash ./containers/build.sh
+cd containers
+bash ./build.sh
 ```
 
 Once the image is built, you can push it to Docker Hub by running:
