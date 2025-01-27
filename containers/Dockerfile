@@ -33,7 +33,6 @@ RUN cd /etc/python-packages &&\
     rm -rf /root/.cache/pypoetry
 
 USER jupyter
-ENV PIP_TARGET=/home/jupyter/.site-packages
 
 # Install Oh My Zsh
 RUN cd /tmp && \
