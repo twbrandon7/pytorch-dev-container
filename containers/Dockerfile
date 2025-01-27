@@ -24,24 +24,13 @@ RUN echo "jupyter ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers
 RUN pip3 install setuptools &&\
     pip3 install poetry
 
-# Install PyTorch
-ARG PYTORCH_VERSION=2.5.1
-ARG TORCHVISION_VERSION=0.20.1
-ARG TORCHAUDIO_VERSION=2.5.1
-ARG PYTORCH_INDEX_URL=https://download.pytorch.org/whl/cu124
-RUN pip3 install "torch==${PYTORCH_VERSION}" \
-    "torchvision==${TORCHVISION_VERSION}" \
-    "torchaudio==${TORCHAUDIO_VERSION}" \
-    --index-url ${PYTORCH_INDEX_URL}
-
-# Install quality tools
-RUN pip3 install "flake8==7.1.1" \
-    "pep8-naming==0.14.1" \
-    "black==24.10.0" \
-    "isort==5.13.2"
-
-# Install Jupyter
-RUN pip3 install ipykernel
+# Install global packages
+COPY pyproject.toml /etc/python-packages/pyproject.toml
+RUN cd /etc/python-packages &&\
+    /bin/true &&\
+    poetry config virtualenvs.create false &&\
+    poetry install --no-interaction &&\
+    rm -rf /root/.cache/pypoetry
 
 USER jupyter
 ENV PIP_TARGET=/home/jupyter/.site-packages
