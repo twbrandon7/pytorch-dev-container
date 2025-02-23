@@ -45,3 +45,5 @@ RUN mkdir -p /home/jupyter/.oh-my-zsh/plugins/poetry &&\
     /usr/local/bin/poetry completions zsh > /home/jupyter/.oh-my-zsh/plugins/poetry/_poetry
 
 RUN echo 'export PATH="/usr/local/bin:${PATH}"' >> /home/jupyter/.zprofile
+
+WORKDIR /home/jupyter
